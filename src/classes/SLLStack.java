@@ -15,20 +15,20 @@ public class SLLStack<E> implements Stack<E>
 	}
 	
 	public E pop() {
-		if (isEmpty()) {
-			return null; 
-		}
-		
-		SNode ntr = top;
-		top = ntr.getNext();
-		size--; 
-		
-		return (E) ntr.getElement();
+		if (isEmpty())
+			return null;
+		SNode<E> ntr = top;
+		top = top.getNext();
+		size--;
+		E etr = ntr.getElement();
+		ntr.clean(); 
+		return etr;
 	}
 
 	public void push(E e) {
-		top = new SNode<>(e, top); 
-		size++;		
+		top = new SNode<>(e,top);
+		size++;
+		
 	}
 
 	public E top() {
